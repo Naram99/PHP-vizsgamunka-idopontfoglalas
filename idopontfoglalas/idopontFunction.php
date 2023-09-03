@@ -180,14 +180,14 @@ function foglalasCheck($conn, $foglaltIdopont, $prog) {
       $foglalasStudioId = (int) $foglalasId[1];
 
       //foglalható-e ilyen hosszú időtartamra a stúdió? Ha nem, a visszatérési érték hamis lesz
-      $denySql = 'SELECT idopontok FROM idopont WHERE TIMESTAMPDIFF(MINUTE, "'.$foglalas1.'", idopontok) < '.$prog.' AND TIMESTAMPDIFF(MINUTE, "'.$foglalas1.'", idopontok) > 0 AND studio_id = '.$foglalasStudioId;
+      $denySql = 'SELECT idopontok FROM idopont WHERE TIMESTAMPDIFF(MINUTE, "'.$foglalas1.'", idopontok) < '.$prog.' AND TIMESTAMPDIFF(MINUTE, "'.$foglalas1.'", idopontok) > 0 AND studio_id = '.$foglalasStudioId.' AND foglalt = 1';
 
       $deny = mysqli_query($conn, $denySql);
       if($deny){
         if(mysqli_num_rows($deny) < 1) {
           
           //ha a kiválasztott program hosszú, a megadott időtartam alatt a többi időpontot is foglaltnak jelzi
-          $updateSql = 'UPDATE idopont SET foglalt = 1 WHERE TIMESTAMPDIFF(MINUTE, idopontok, "'.$foglalas1.'") < '.$prog.' AND TIMESTAMPDIFF(MINUTE, idopontok, "'.$foglalas1.'") > 0 AND studio_id = '.$foglalasStudioId;
+          $updateSql = 'UPDATE idopont SET foglalt = 1 WHERE TIMESTAMPDIFF(MINUTE, "'.$foglalas1.'", idopontok) < '.$prog.' AND TIMESTAMPDIFF(MINUTE, "'.$foglalas1.'", idopontok) > 0 AND studio_id = '.$foglalasStudioId;
 
           mysqli_query($conn, $updateSql);
           $foglalhato = true;

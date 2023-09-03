@@ -91,7 +91,7 @@ $name = $_SESSION['user_name'];
         <a href="./idopontfoglalas.php?date=<?php print($aktEv); ?>-<?php print($aktHonap - 1); ?>-<?php print($nap); ?>&std=<?php print($std); ?>" class="btn btn-primary col-2">Előző hónap</a>
 
         <!-- Aktuális hónap kiírása -->
-        <h4 class="text-center col-8"><?php print($honapok[$aktHonap - 1]); ?></h4>
+        <h4 class="text-center col-8"><?php print($aktEv.'. '.$honapok[$aktHonap - 1]); ?></h4>
 
         <!-- Naptár léptető gomb -->
         <a href="./idopontfoglalas.php?date=<?php print($aktEv); ?>-<?php print($aktHonap + 1); ?>-<?php print($nap); ?>&std=<?php print($std); ?>" class="btn btn-primary col-2">Következő hónap</a>

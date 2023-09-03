@@ -25,7 +25,7 @@ require_once './config/db.php';
     <div class="row">
     <?php foreach($fotok as $key => $foto): ?>
       <div class="col-4">
-        <img src="../assets/images/<?php print($foto) ?>" alt="portfólió kép" width="100%">
+        <img src="./assets/images/<?php print($foto) ?>" alt="portfólió kép" width="100%">
       </div>
     <?php 
         endforeach;
